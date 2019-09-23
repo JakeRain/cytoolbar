@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <item name="appbarLayoutParent" type="id"/>
+    <item name="appbarLayout" type="id"/>
+    <item name="collaspingToolbarLayout" type="id" />
+    <item name="toolbar" type="id"/>
+    <item name="toolbarTitle" type="id"/>
+    <item name="componentXContainer" type="id"/>
+    
+</resources>
