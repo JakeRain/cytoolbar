@@ -1,5 +1,6 @@
 package com.cystatusbar
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -14,6 +15,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.cystatusbar.extensions.*
+import com.cystatusbar.spliteactivty.SplitActivity
+import com.cystatusbar.spliteactivty.SplitMainActivity
 import com.cystatusbar.viewmodel.WindowInsetsViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -235,6 +238,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun viewModel(view: View) {
+        startActivity(Intent(this , SplitActivity::class.java))
+    }
 
 
 }
