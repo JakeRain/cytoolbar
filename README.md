@@ -1,3 +1,6 @@
+
+本项目只是为了个人学习总结用的
+
 这是我总结的设置状态栏的方法(简单说说实现方式)
 
 1.主题的样式修改,去掉原先的toolbar,添加自己的toolbar
@@ -52,3 +55,6 @@
 
 
 
+
+將同事的staticviewmodel加入进来
+这个是他的主页,https://github.com/Attect   
