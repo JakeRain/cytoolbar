@@ -36,4 +36,5 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:${lifecycle_extensions_version}"
     implementation 'cn.yc:WebViewLib:1.1.2'
     implementation project(path: ':staticviewmodel')
+
 }

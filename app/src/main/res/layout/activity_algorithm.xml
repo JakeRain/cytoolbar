@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".algorithm.AlgorithmActivity">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="堆排序"
+                android:id="@+id/heapSort"
+                android:onClick="heapSort"
+                android:layout_marginStart="5dp"/>
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="归并排序"
+                android:id="@+id/mergeSort"
+                android:onClick="mergeSort"
+                android:layout_marginStart="5dp"/>
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="希尔排序"
+                android:id="@+id/shellSort"
+                android:onClick="shellSort"
+                android:layout_marginStart="5dp"/>
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="插入排序"
+                android:id="@+id/insert"
+                android:onClick="insert"
+                android:layout_marginStart="5dp"/>
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="睡眠排序"
+                android:id="@+id/sleep"
+                android:onClick="sleep"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="冒泡排序"
+                android:id="@+id/dichotomy"
+                android:onClick="dichotomy"
+                android:layout_marginStart="5dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择排序"
+                android:id="@+id/selected"
+                android:onClick="selected"
+                android:layout_marginStart="5dp"/>
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/show"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_dark"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:lineSpacingExtra="10dp"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            tools:text="19 12 13 14 15 "
+            />
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</LinearLayout>

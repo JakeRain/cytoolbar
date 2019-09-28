@@ -67,4 +67,17 @@
         />
 
 
+    <Button
+        android:id="@+id/mySort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="十个经典排序算法"
+        android:textColor="@color/black"
+        android:onClick="toMySort"
+        app:layout_constraintTop_toBottomOf="@id/viewModel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
