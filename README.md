@@ -1,112 +1,79 @@
+**本项目只是为了个人学习总结用的**
 
-本项目只是为了个人学习总结用的
+# 一.设置状态栏
 
+这是我总结的设置状态栏的方法(简单说说实现方式)1.主题的样式修改,去掉原先的toolbar,添加自己的toolbar2.给toolbar设置颜色3.给toolbar设置透明度4.给界面设置全屏,去掉toolbar先说说怎么设置主题样式这是一个总的样式   
 
+<style name="CYAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">    
+<item name="colorPrimary">@color/colorPrimary</item><!--  主题颜色 -->      
+<item name="colorAccent">@color/colorAccent</item><!--  主题颜色 -->       
+<item name="colorPrimaryDark">@color/colorPrimaryDark</item><!--  主题颜色 -->        
+<item name="android:windowTranslucentStatus">false</item><!--  true为半透明, -->   
+<!--      其实是为了能够让ActionMode能够覆盖我们的Toolbar       -->       
+<item name="windowActionModeOverlay">true</item> 
+<!--      其实是为了能够让ActionMode能够覆盖我们的Toolbar       -->  
+<item name="android:windowActionModeOverlay">true</item>     
+<item name="actionModeStyle">@style/CYAppTheme.ActionMode</item>        
+<!--   返回键的样式         --> 
+<item name="actionModeCloseButtonStyle">@style/CYAppTheme.ActionMode.ColseStype</item>      
+<item name="actionModeBackground">@color/colorPrimary</item>    
+</style>   
 
-一     这是我总结的设置状态栏的方法(简单说说实现方式)
+//toolbar高度    
+<style name="CYAppTheme.ActionMode" parent="Widget.AppCompat.ActionMode">        
+<item name="height">@dimen/toolbar_height</item>    
+</style>    
 
-1.主题的样式修改,去掉原先的toolbar,添加自己的toolbar
-2.给toolbar设置颜色
-3.给toolbar设置透明度
-4.给界面设置全屏,去掉toolbar
+//返回键    
+<style name="CYAppTheme.ActionMode.ColseStype" parent="Widget.AppCompat.ActionButton.CloseMode">        <item name="android:tint">@android:color/white</item>       
+<item name="android:layout_marginStart">2dp</item>    
+</style>    
 
+//设置toolbar的theme    
+<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark" >      
+<item name="windowActionModeOverlay">true</item>      
+<item name="android:windowActionModeOverlay">true</item>       <!--底部无阴影-->       
+<item name="elevation">0dp</item>    
+</style>
 
-
-先说说怎么设置主题样式
-
-这是一个总的样式
-    <style name="CYAppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item><!--  主题颜色 -->
-        <item name="colorAccent">@color/colorAccent</item><!--  主题颜色 -->
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item><!--  主题颜色 -->
-
-        <item name="android:windowTranslucentStatus">false</item><!--  true为半透明, -->
-        <item name="windowActionModeOverlay">true</item> <!--      其实是为了能够让ActionMode能够覆盖我们的Toolbar       -->
-        <item name="android:windowActionModeOverlay">true</item><!--      其实是为了能够让ActionMode能够覆盖我们的Toolbar       -->
-
-        <item name="actionModeStyle">@style/CYAppTheme.ActionMode</item>
-        <item name="actionModeCloseButtonStyle">@style/CYAppTheme.ActionMode.ColseStype</item><!--   返回键的样式         -->
-        <item name="actionModeBackground">@color/colorPrimary</item>
-    </style>
-
-
-    //toolbar高度
-    <style name="CYAppTheme.ActionMode" parent="Widget.AppCompat.ActionMode">
-        <item name="height">@dimen/toolbar_height</item>
-    </style>
-    //返回键
-    <style name="CYAppTheme.ActionMode.ColseStype" parent="Widget.AppCompat.ActionButton.CloseMode">
-        <item name="android:tint">@android:color/white</item>
-        <item name="android:layout_marginStart">2dp</item>
-    </style>
-
-
-    //设置toolbar的theme
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark" >
-       <item name="windowActionModeOverlay">true</item>
-       <item name="android:windowActionModeOverlay">true</item>
-       <!--底部无阴影-->
-       <item name="elevation">0dp</item>
-    </style>
-
-以上就是整个app的主题,以及toolbar的主题
-
-点击设置顶部状态栏的颜色,直接设置就好了,具体方法见Activity.setStatusBarColor(@ColorInt color:Int)
+以上就是整个app的主题,以及toolbar的主题点击设置顶部状态栏的颜色,
+直接设置就好了,具体方法见Activity.setStatusBarColor(@ColorInt color:Int)
 设置状态栏的透明度,具体方法见Activity.transparentStatusBar(lightIconStyle: Boolean = true)
 最后一个设置全屏的方法见Activity.fullScreen(isFullScreen: Boolean = true)
 
+# 二    將同事的staticviewmodel加入进来这个是他的主页,https://github.com/Attect
 
+# 三    学习十个景点的排序算法现在只有七个排序算法
 
+1/冒泡排序,2/选择排序,3/插入排序,4/希尔排序,5/归并排序,6/快速排序,7/堆排序
+(用两句话根据自己的理解简单的描述)
 
-二    將同事的staticviewmodel加入进来
-这个是他的主页,https://github.com/Attect
-
-
-
-三    学习十个景点的排序算法
-
-现在只有七个排序算法1/冒泡排序,2/选择排序,3/插入排序,4/希尔排序,5/归并排序,6/快速排序,7/堆排序
-(两句话简单的描述)
 1. 冒泡排序
-从前往后两两比较,小的换到前面,大的到后面
-循环次数n*n
-2.选择排序
-从前往后扫描找到最小的,將最小的放到前面
-循环次数n*n
-3.插入排序
-两层循环
-第一层从前往后
-第二层循环,从上一层的index倒回到0位置,目的將index数据找到他合适的未知
-最差的情况  循环次数n*n
-4.希尔排序
-將数组长度/2=len  index={(0,len) , (1 , len+1)... (len,len+len)}如此两两比对,小的到前面大的到后面
-数组长度/2/2 =len   如此从0 开始每隔len个数字为一组,进行插入排序
-循环次数n*log(2)n
-5.归并排序(个人认为最有趣的一种, 用到了递归)
-將数组一直除以2除到不能除为止,將数组分成若干个小数组,然后归并(按照从小到大的归并)
-6.快速排序
+从前往后两两比较,小的换到前面,大的到后面循环次数n*n*
+
+2. 选择排序
+
+  从前往后扫描找到最小的,將最小的放到前面
+  循环次数n*n
+
+3. 插入排序
+   两层循环第一层从前往后第二层循环,从上一层的index倒回到0位置,目的將index数据找到他合适的未知最差的情况  
+   循环次数n*n
+
+4. 希尔排序
+   將数组长度/2=len  index={(0,len) , (1 , len+1)... (len,len+len)}
+   如此两两比对,小的到前面大的到后面数组长度/2/2 =len   
+   如此从0 开始每隔len个数字为一组,进行插入排序
+   循环次数n*log(2)n
+
+5. 归并排序(个人认为最有趣的一种, 用到了递归)
+   將数组一直除以2除到不能除为止,將数组分成若干个小数组,然后归并(按照从小到大的归并)
+
+6. 快速排序
+
+7. .堆排序(原文章https://www.cnblogs.com/guoyaohua/p/8600214.html, adjustHeap()方法有错)
+   將数组按照二叉树的顺序进行比对排序,將最大的数字浮到顶节点,然后將他与最后一个节点交换如此往复循环到最后,最小的数字在顶层节点
+   复杂度   nlogn1)
 
 
-7.堆排序(原文章https://www.cnblogs.com/guoyaohua/p/8600214.html, adjustHeap()方法有错)
-將数组按照二叉树的顺序进行比对排序,將最大的数字浮到顶节点,然后將他与最后一个节点交换
-如此往复循环到最后,最小的数字在顶层节点
-复杂度   nlogn
-
-
-
-
-
-
-
-
-
-
-
-
-1)听同事说有个睡眠排序,自己靠着理解尝试的睡眠排序
-原理: 每个数据单独的一个线程
-      根据数据让线程进入睡眠状态
-      先醒的必然是比较小的数字,將排在前面
-      由于jvm的线程工作原理(两个相邻的数字容易混乱)    所以將每个数字都扩大了100倍 , 让线程睡100倍的时间
-
-
+听同事说有个睡眠排序,自己靠着理解尝试的睡眠排序原理: 每个数据单独的一个线程      根据数据让线程进入睡眠状态      先醒的必然是比较小的数字,將排在前面      由于jvm的线程工作原理(两个相邻的数字容易混乱)    所以將每个数字都扩大了100倍 , 让线程睡100倍的时间
