@@ -381,6 +381,42 @@ class AlgorithmActivity : AppCompatActivity() {
         }
     }
 
+    //endregion 堆排序
 
-    //堆排序
+
+    fun quickSort(view: View) {
+        val datas = (5..19).shuffled().toMutableList()
+        val result = myQuickSort(datas , 0 , datas.size-1)
+        val stringBuilder = StringBuilder("快速排序")
+        stringBuilder.append("<br/>")
+
+        result?.forEach {
+            stringBuilder.append(it).append("&nbsp;&nbsp;")
+        }
+        myliveData.postValue(stringBuilder.toString())
+    }
+    fun myQuickSort(array: MutableList<Int> , start:Int , end:Int ):MutableList<Int>?{
+        if(array.size < 1 || start< 0 || end>= array.size || start>end) return null
+        val smallIndex = partition(array , start , end)
+        if(smallIndex > start)
+            myQuickSort(array , start , smallIndex-1)
+        if(smallIndex < end)
+            myQuickSort(array , smallIndex+1 , end)
+        return array
+    }
+    fun partition(array:MutableList<Int> , start:Int , end:Int):Int{
+        val pivot = (start + Math.random()*(end-start+1)).toInt()
+        var smallIndex = start-1;
+        swap(array , pivot , end)
+        for(i in start .. end){
+            if(array[i] <= array[end]){
+                smallIndex++
+                if(i>smallIndex){
+                    swap(array , i , smallIndex)
+                }
+            }
+        }
+        return smallIndex
+    }
+
 }
