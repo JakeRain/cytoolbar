@@ -15,6 +15,27 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="桶排序"
+                android:id="@+id/bucketSort"
+                android:onClick="bucketSort"
+                android:layout_marginStart="5dp"/>
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="计数排序"
+                android:id="@+id/countingSort"
+                android:onClick="countingSort"
+                android:layout_marginStart="5dp"/>
+
+
+
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

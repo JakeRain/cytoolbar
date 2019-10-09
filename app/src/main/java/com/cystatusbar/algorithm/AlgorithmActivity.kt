@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_algorithm.*
 import java.lang.StringBuilder
 import java.util.*
 import java.util.Collections.swap
+import kotlin.collections.ArrayList
 
 
 /**
@@ -384,6 +385,7 @@ class AlgorithmActivity : AppCompatActivity() {
     //endregion 堆排序
 
 
+    //region 快速排序
     fun quickSort(view: View) {
         val datas = (5..19).shuffled().toMutableList()
         val result = myQuickSort(datas , 0 , datas.size-1)
@@ -418,5 +420,133 @@ class AlgorithmActivity : AppCompatActivity() {
         }
         return smallIndex
     }
+    //endregion
+
+
+    fun countingSort(view: View) {
+        val stringBuilder = StringBuilder("计数排序").append("<br/>")
+
+        val array = arrayListOf( 4, 3,6, 4, 6, 7, 8,4 ,3 ,2 ,1, 7)
+
+        stringBuilder.append("原数据").append("<br/>")
+        array.forEachIndexed { index, i ->
+            stringBuilder.append(i).append("&nbsp;&nbsp;")
+        }
+        stringBuilder.append("<br/>")
+
+
+        var bias = array[0]
+        var min = array[0]
+        var max = array[0]
+        //找到最大的数字和最小的数字
+        for(i in 1 until  array.size ){
+            if(array[i] > max)
+                max = array[i]
+            if(array[i] < min)
+                min = array[i]
+        }
+        bias = 0 - min
+        val bucket = IntArray(max - min + 1)
+        Arrays.fill(bucket , 0)
+
+        for(i in 0 until array.size ){
+            bucket[array[i] + bias]++;
+        }
+
+        stringBuilder.append("计数结果").append("<br/>")
+        bucket.forEachIndexed { index, i ->
+            val value = if(i == 0) 0 else index - bias
+            val num = if(i == 0) "0" else "$i 个"
+            stringBuilder.append(value).append("&nbsp;&nbsp;").append(num).append("<br/>")
+        }
+
+        var index = 0
+        var i = 0
+        while(index < array.size){
+            if(bucket[i] != 0){
+                array[index] = i - bias
+                bucket[i]--
+                index++
+            }else
+                i++
+        }
+        stringBuilder.append("排序结果").append("<br/>")
+        array.forEachIndexed { index, i ->
+            stringBuilder.append(i).append("&nbsp;&nbsp;")
+        }
+        myliveData.postValue(stringBuilder.toString())
+
+    }
+    val bucketBuilder = StringBuilder("桶排序").append("<br/>")
+
+    fun bucketSort(view: View) {
+
+        //人为的设置一个size , 标明:桶能放多少个不同数值
+        var bucketSize = 2
+
+
+        val array = arrayListOf( 4, 3,6, 4, 6, 7, 8,4 ,3 ,2 ,1, 7).toMutableList() as ArrayList
+
+        bucketBuilder.append("原数据").append("<br/>")
+        array.forEachIndexed { index, i ->
+            bucketBuilder.append(i).append("&nbsp;&nbsp;")
+        }
+        bucketBuilder.append("<br/>")
+        val results = myBucketSort(array , bucketSize)
+        bucketBuilder.append("最后的结果").append("<br/>")
+        results.forEachIndexed { index, i ->
+            bucketBuilder.append(i).append("&nbsp;&nbsp;")
+        }
+
+        myliveData.postValue(bucketBuilder.toString())
+    }
+
+
+    fun myBucketSort(array: ArrayList<Int> , bucketsize : Int):ArrayList<Int>{
+        var bucketSize = bucketsize
+        var max = array[0]
+        var min = array[0]
+        for(i in 0 until array.size){
+            if(max < array[i])
+                max = array[i]
+            if(min > array[i])
+                min = array[i]
+        }
+        val bucketCount = (max - min)/bucketSize + 1
+        val bucketArr = ArrayList<ArrayList<Int>>( bucketCount)
+        val resultArr = ArrayList<Int>()
+        for( i in 0 until bucketCount){
+            bucketArr.add(ArrayList())
+        }
+        for(i in 0 until array.size){
+            bucketArr.get((array[i] - min) / bucketSize).add(array[i])
+        }
+        bucketBuilder.append("桶中的数据").append("<br/>")
+        bucketArr.forEachIndexed { index, arrayList ->
+            arrayList.forEachIndexed { index, i ->
+                bucketBuilder.append(i).append("&nbsp;&nbsp;")
+            }
+            bucketBuilder.append("<br/>")
+        }
+
+
+        for(i in 0 until bucketCount ){
+            if(bucketSize == 1){//排序数组中有重复的数字
+                for(j in 0 until bucketArr[i].size){
+                    resultArr.add(bucketArr[i].get(j))
+                }
+            }else{
+                if(bucketCount == 1){
+                    bucketSize--
+                }
+                val temp = myBucketSort(bucketArr[i] , bucketSize)
+                for(j in 0 until temp.size){
+                    resultArr.add(temp[j])
+                }
+            }
+        }
+        return resultArr
+    }
+
 
 }
