@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cystatusbar">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CYAppTheme"
-        android:name=".MyApplication">
+        android:name=".MyApplication"
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".MainActivity"
@@ -25,6 +29,7 @@
         <activity android:name=".spliteactivty.SplitActivity" android:documentLaunchMode="always" />
         <activity android:name=".spliteactivty.SplitMainActivity" />
         <activity android:name=".algorithm.AlgorithmActivity"></activity>
+        <activity android:name=".OkHttpActivity"/>
 
     </application>
 

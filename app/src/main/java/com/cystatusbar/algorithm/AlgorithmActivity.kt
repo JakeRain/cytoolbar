@@ -320,15 +320,15 @@ class AlgorithmActivity : AppCompatActivity() {
 //endregion
 
 
+    //region堆排序
+    var len: Int = 0
 
-//region堆排序
-    var len:Int = 0
     fun heapSort(view: View) {
         Thread(Runnable {
             var datas = (5..19).shuffled().toMutableList()
             val stringBuilder = StringBuilder("堆排序").append("<br/>")
             stringBuilder.append("原数据").append("<br/>")
-            datas.forEach{
+            datas.forEach {
                 stringBuilder.append(it).append("&nbsp;&nbsp;")
             }
             stringBuilder.append("<br/>").append("新数据").append("<br/>")
@@ -343,24 +343,23 @@ class AlgorithmActivity : AppCompatActivity() {
     }
 
 
-
-    fun myHeapSort(array: MutableList<Int>):MutableList<Int>{
+    fun myHeapSort(array: MutableList<Int>): MutableList<Int> {
         len = array.size
-        if(len < 1)return array
+        if (len < 1) return array
         //1.构建一个最大堆
         buildMaxHeap(array)
         //2循环將堆首位(最大值)与末尾交换,然后再重新调整最大堆
-        while (len > 0){
-            swap(array , 0  , len-1)
+        while (len > 0) {
+            swap(array, 0, len - 1)
             len--
-            adjustHeap(array , 0)
+            adjustHeap(array, 0)
         }
         return array
     }
 
-    fun buildMaxHeap(array:MutableList<Int>){
-        for(i in (len/2-1) downTo   0){
-            adjustHeap(array , i)
+    fun buildMaxHeap(array: MutableList<Int>) {
+        for (i in (len / 2 - 1) downTo 0) {
+            adjustHeap(array, i)
         }
     }
 
@@ -370,15 +369,15 @@ class AlgorithmActivity : AppCompatActivity() {
      * 原文堆排序
      * 这个地方是错的(错了错了一位)
      */
-    fun adjustHeap(array: MutableList<Int> , i : Int){
+    fun adjustHeap(array: MutableList<Int>, i: Int) {
         var maxIndex = i
-        if(i * 2+1 < len && array[i*2+1 ] > array[maxIndex])
-            maxIndex = i*2 + 1
-        if(i*2 + 2 < len && array[i * 2 + 2] > array[maxIndex])
+        if (i * 2 + 1 < len && array[i * 2 + 1] > array[maxIndex])
+            maxIndex = i * 2 + 1
+        if (i * 2 + 2 < len && array[i * 2 + 2] > array[maxIndex])
             maxIndex = i * 2 + 2
-        if(maxIndex != i){
-            swap(array , maxIndex , i)
-            adjustHeap(array,maxIndex)
+        if (maxIndex != i) {
+            swap(array, maxIndex, i)
+            adjustHeap(array, maxIndex)
         }
     }
 
@@ -388,7 +387,7 @@ class AlgorithmActivity : AppCompatActivity() {
     //region 快速排序
     fun quickSort(view: View) {
         val datas = (5..19).shuffled().toMutableList()
-        val result = myQuickSort(datas , 0 , datas.size-1)
+        val result = myQuickSort(datas, 0, datas.size - 1)
         val stringBuilder = StringBuilder("快速排序")
         stringBuilder.append("<br/>")
 
@@ -397,24 +396,26 @@ class AlgorithmActivity : AppCompatActivity() {
         }
         myliveData.postValue(stringBuilder.toString())
     }
-    fun myQuickSort(array: MutableList<Int> , start:Int , end:Int ):MutableList<Int>?{
-        if(array.size < 1 || start< 0 || end>= array.size || start>end) return null
-        val smallIndex = partition(array , start , end)
-        if(smallIndex > start)
-            myQuickSort(array , start , smallIndex-1)
-        if(smallIndex < end)
-            myQuickSort(array , smallIndex+1 , end)
+
+    fun myQuickSort(array: MutableList<Int>, start: Int, end: Int): MutableList<Int>? {
+        if (array.size < 1 || start < 0 || end >= array.size || start > end) return null
+        val smallIndex = partition(array, start, end)
+        if (smallIndex > start)
+            myQuickSort(array, start, smallIndex - 1)
+        if (smallIndex < end)
+            myQuickSort(array, smallIndex + 1, end)
         return array
     }
-    fun partition(array:MutableList<Int> , start:Int , end:Int):Int{
-        val pivot = (start + Math.random()*(end-start+1)).toInt()
-        var smallIndex = start-1;
-        swap(array , pivot , end)
-        for(i in start .. end){
-            if(array[i] <= array[end]){
+
+    fun partition(array: MutableList<Int>, start: Int, end: Int): Int {
+        val pivot = (start + Math.random() * (end - start + 1)).toInt()
+        var smallIndex = start - 1;
+        swap(array, pivot, end)
+        for (i in start..end) {
+            if (array[i] <= array[end]) {
                 smallIndex++
-                if(i>smallIndex){
-                    swap(array , i , smallIndex)
+                if (i > smallIndex) {
+                    swap(array, i, smallIndex)
                 }
             }
         }
@@ -426,7 +427,7 @@ class AlgorithmActivity : AppCompatActivity() {
     fun countingSort(view: View) {
         val stringBuilder = StringBuilder("计数排序").append("<br/>")
 
-        val array = arrayListOf( 4, 3,6, 4, 6, 7, 8,4 ,3 ,2 ,1, 7)
+        val array = arrayListOf(4, 3, 6, 4, 6, 7, 8, 4, 3, 2, 1, 7)
 
         stringBuilder.append("原数据").append("<br/>")
         array.forEachIndexed { index, i ->
@@ -439,35 +440,35 @@ class AlgorithmActivity : AppCompatActivity() {
         var min = array[0]
         var max = array[0]
         //找到最大的数字和最小的数字
-        for(i in 1 until  array.size ){
-            if(array[i] > max)
+        for (i in 1 until array.size) {
+            if (array[i] > max)
                 max = array[i]
-            if(array[i] < min)
+            if (array[i] < min)
                 min = array[i]
         }
         bias = 0 - min
         val bucket = IntArray(max - min + 1)
-        Arrays.fill(bucket , 0)
+        Arrays.fill(bucket, 0)
 
-        for(i in 0 until array.size ){
+        for (i in 0 until array.size) {
             bucket[array[i] + bias]++;
         }
 
         stringBuilder.append("计数结果").append("<br/>")
         bucket.forEachIndexed { index, i ->
-            val value = if(i == 0) 0 else index - bias
-            val num = if(i == 0) "0" else "$i 个"
+            val value = if (i == 0) 0 else index - bias
+            val num = if (i == 0) "0" else "$i 个"
             stringBuilder.append(value).append("&nbsp;&nbsp;").append(num).append("<br/>")
         }
 
         var index = 0
         var i = 0
-        while(index < array.size){
-            if(bucket[i] != 0){
+        while (index < array.size) {
+            if (bucket[i] != 0) {
                 array[index] = i - bias
                 bucket[i]--
                 index++
-            }else
+            } else
                 i++
         }
         stringBuilder.append("排序结果").append("<br/>")
@@ -477,50 +478,52 @@ class AlgorithmActivity : AppCompatActivity() {
         myliveData.postValue(stringBuilder.toString())
 
     }
+
+    //region 桶排序
     val bucketBuilder = StringBuilder("桶排序").append("<br/>")
 
     fun bucketSort(view: View) {
 
         //人为的设置一个size , 标明:桶能放多少个不同数值
-        var bucketSize = 2
+        var bucketSize = 10
 
 
-        val array = arrayListOf( 4, 3,6, 4, 6, 7, 8,4 ,3 ,2 ,1, 7).toMutableList() as ArrayList
+        val array = arrayListOf(4, 3, 6, 4, 6, 7, 8, 4, 3, 2, 1, 7).toMutableList() as ArrayList
 
         bucketBuilder.append("原数据").append("<br/>")
         array.forEachIndexed { index, i ->
             bucketBuilder.append(i).append("&nbsp;&nbsp;")
         }
         bucketBuilder.append("<br/>")
-        val results = myBucketSort(array , bucketSize)
+        val results = myBucketSort(array, bucketSize)
         bucketBuilder.append("最后的结果").append("<br/>")
         results.forEachIndexed { index, i ->
             bucketBuilder.append(i).append("&nbsp;&nbsp;")
         }
-
         myliveData.postValue(bucketBuilder.toString())
     }
 
 
-    fun myBucketSort(array: ArrayList<Int> , bucketsize : Int):ArrayList<Int>{
+    fun myBucketSort(array: ArrayList<Int>, bucketsize: Int): ArrayList<Int> {
         var bucketSize = bucketsize
         var max = array[0]
         var min = array[0]
-        for(i in 0 until array.size){
-            if(max < array[i])
+        for (i in 0 until array.size) {
+            if (max < array[i])
                 max = array[i]
-            if(min > array[i])
+            if (min > array[i])
                 min = array[i]
         }
-        val bucketCount = (max - min)/bucketSize + 1
-        val bucketArr = ArrayList<ArrayList<Int>>( bucketCount)
+        val bucketCount = (max - min) / bucketSize + 1
+        val bucketArr = ArrayList<ArrayList<Int>>(bucketCount)
         val resultArr = ArrayList<Int>()
-        for( i in 0 until bucketCount){
+        for (i in 0 until bucketCount) {
             bucketArr.add(ArrayList())
         }
-        for(i in 0 until array.size){
+        for (i in 0 until array.size) {
             bucketArr.get((array[i] - min) / bucketSize).add(array[i])
         }
+
         bucketBuilder.append("桶中的数据").append("<br/>")
         bucketArr.forEachIndexed { index, arrayList ->
             arrayList.forEachIndexed { index, i ->
@@ -529,24 +532,108 @@ class AlgorithmActivity : AppCompatActivity() {
             bucketBuilder.append("<br/>")
         }
 
-
-        for(i in 0 until bucketCount ){
-            if(bucketSize == 1){//排序数组中有重复的数字
-                for(j in 0 until bucketArr[i].size){
+        for (i in 0 until bucketCount) {
+            if (bucketSize == 1) {//排序数组中有重复的数字
+                for (j in 0 until bucketArr[i].size) {
                     resultArr.add(bucketArr[i].get(j))
                 }
-            }else{
-                if(bucketCount == 1){
+            } else {
+                if (bucketCount == 1) {
                     bucketSize--
                 }
-                val temp = myBucketSort(bucketArr[i] , bucketSize)
-                for(j in 0 until temp.size){
+                val temp = myBucketSort(bucketArr[i], bucketSize)
+                for (j in 0 until temp.size) {
                     resultArr.add(temp[j])
                 }
             }
         }
         return resultArr
     }
+
+
+    //endregion
+
+
+    //region 基数排序
+    fun radixSort(view: View) {
+        val sourcesArr = arrayListOf<Int>(
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt(),
+            randomInt()
+        )
+        var stringBuilder = StringBuilder("基数排序").append("<br/>")
+            .append("原数据").append("<br/>")
+        sourcesArr.forEach { stringBuilder.append(it).append("&nbsp;&nbsp;") }
+        stringBuilder.append("<br/>")
+
+        //1.最大数字有多少位
+        var max = sourcesArr[0]
+        for (i in 0 until sourcesArr.size) {
+            max = Math.max(max, sourcesArr[i])
+        }
+        var maxDigit = 0
+        while (max != 0) {
+            max /= 10
+            maxDigit++
+        }
+        var mod = 10
+        var div = 1
+        //2.0..9 个ArrayList<Int>   放在同一个arraylist中
+        val bucketList = ArrayList<ArrayList<Int>>()
+        for (i in 0 until 10) {
+            bucketList.add(ArrayList())
+        }
+        for (i in 0 until maxDigit) {
+            for (j in 0 until sourcesArr.size) {
+                var num = (sourcesArr[j] % mod) / div
+                bucketList[num].add(sourcesArr[j])
+            }
+
+            stringBuilder.append("<font color='red'>第${i}位排序</font>").append("<br/>")
+            bucketList.forEachIndexed { index, list ->
+                stringBuilder.append("<font color='yellow'>${i}位").append("的${index}</font>")
+                    .append("<br/>")
+                list.forEach { num ->
+                    stringBuilder.append(num).append("&nbsp;&nbsp;")
+                }
+                stringBuilder.append("<br/>")
+            }
+
+
+            var index = 0
+            for (j in 0 until bucketList.size) {
+                for (k in 0 until bucketList[j].size) {
+                    sourcesArr[index++] = bucketList[j].get(k)
+                }
+                bucketList[j].clear()
+            }
+            stringBuilder.append("<font color='red'>第${i}位排序结果</font><br/>")
+            sourcesArr.forEach { stringBuilder.append(it).append("&nbsp;&nbsp;") }
+            stringBuilder.append("<br/>")
+
+
+            mod *= 10
+            div *= 10
+        }
+        myliveData.postValue(stringBuilder.toString())
+    }
+
+
+    private fun randomInt(): Int {
+        return (Math.random() * 10000).toInt()
+    }
+//endregion
 
 
 }

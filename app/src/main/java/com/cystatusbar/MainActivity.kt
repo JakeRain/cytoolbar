@@ -5,6 +5,8 @@ import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.*
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.Toolbar
@@ -21,11 +23,15 @@ import com.cystatusbar.viewmodel.WindowInsetsViewModel
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.snackbar.Snackbar
+import com.rxhttp.RxHttpUrl
 import cy.statusbar.extensions.fullScreen
 import cy.statusbar.extensions.rootView
 import cy.statusbar.extensions.setStatusBarColor
 import cy.statusbar.extensions.transparentStatusBar
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.coroutines.*
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -246,5 +252,21 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this , AlgorithmActivity::class.java))
     }
 
+    fun myOkHttp(view: View) {
+        startActivity(Intent(this , OkHttpActivity::class.java))
+    }
+
+    fun mysuspend(view: View) {
+        GlobalScope.launch (Dispatchers.IO){
+            val value = RxHttpUrl.test()
+            withContext(Dispatchers.Main){
+                val stringBuilder = StringBuilder()
+                value?.forEach {
+                    stringBuilder.append(it.name).append("\n")
+                }
+                mysuspend.text = stringBuilder.toString()
+            }
+        }
+    }
 
 }

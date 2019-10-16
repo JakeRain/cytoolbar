@@ -1,2 +1,2 @@
-include ':app', ':staticviewmodel'
+include ':app', ':staticviewmodel', ':rxhttp'
 rootProject.name='cystatusbar'

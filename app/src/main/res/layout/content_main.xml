@@ -80,4 +80,30 @@
         />
 
 
+    <Button
+        android:id="@+id/myOkHttp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="okhttp请求网络"
+        android:textColor="@color/black"
+        android:onClick="myOkHttp"
+        app:layout_constraintTop_toBottomOf="@id/mySort"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <Button
+        android:id="@+id/mysuspend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="kotlin的携程"
+        android:textColor="@color/black"
+        android:onClick="mysuspend"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/myOkHttp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
