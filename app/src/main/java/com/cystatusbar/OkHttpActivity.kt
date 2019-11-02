@@ -79,7 +79,7 @@ class OkHttpActivity : AppCompatActivity() {
 //
 //            override fun onResponse(
 //                call: Call<MyResponse<List<CommonBean>>>,
-//                response: Response<MyResponse<List<CommonBean>>>
+//                response: APIResponse<MyResponse<List<CommonBean>>>
 //            ) {
 //                Toast.makeText(baseContext , "访问网络成功", Toast.LENGTH_LONG).show()
 //            }

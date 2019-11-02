@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".socket.SocketActivity"
+    android:padding="20dp">
+
+
+
+    <Button
+        android:id="@+id/connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="connect"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/disconnect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="disconnect"
+        app:layout_constraintTop_toBottomOf="@id/connect"/>
+
+    <TextView
+        android:id="@+id/receive_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/disconnect"/>
+
+    <Button
+        android:id="@+id/Receive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Receive from message"
+        app:layout_constraintTop_toBottomOf="@id/receive_message"/>
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="4"
+        app:layout_constraintTop_toBottomOf="@id/Receive"/>
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="send"
+        app:layout_constraintTop_toBottomOf="@id/edit"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
